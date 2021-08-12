@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/workoutFragment">
+
+    <fragment
+        android:id="@+id/workoutFragment"
+        android:name="com.github.christianmsc.WorkoutFragment"
+        android:label="Workout"
+        tools:layout="@layout/fragment_workout" />
+    <fragment
+        android:id="@+id/favoritesExercisesFragment"
+        android:name="com.github.christianmsc.FavoritesExercisesFragment"
+        android:label="Favorites"
+        tools:layout="@layout/fragment_favorites_exercises" />
+    <fragment
+        android:id="@+id/randomExerciseFragment"
+        android:name="com.github.christianmsc.RandomExerciseFragment"
+        android:label="Random Exercise"
+        tools:layout="@layout/fragment_random_exercise" />
+</navigation>

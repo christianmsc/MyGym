@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/workoutFragment"
+        android:icon="@drawable/ic_menu_workout_24"
+        android:title="@string/workout_fragment" />
+    <item
+        android:id="@+id/favoritesExercisesFragment"
+        android:icon="@drawable/ic_menu_favorites"
+        android:title="@string/favorites_exercises_fragment" />
+    <item
+        android:id="@+id/randomExerciseFragment"
+        android:icon="@drawable/ic_menu_random_exercise"
+        android:title="@string/random_exercise_fragment" />
+</menu>

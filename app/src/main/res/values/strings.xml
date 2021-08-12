@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">My Gym</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="workout_fragment">Workout</string>
+    <string name="favorites_exercises_fragment">Favorites</string>
+    <string name="random_exercise_fragment">Random</string>
 </resources>
