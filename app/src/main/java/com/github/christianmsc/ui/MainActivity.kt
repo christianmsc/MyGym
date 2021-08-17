@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.workoutFragment,
+                R.id.exercisesFragment,
                 R.id.favoritesExercisesFragment,
                 R.id.randomExerciseFragment
             )
