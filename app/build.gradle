@@ -3,7 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply plugin: 'dagger.hilt.android.plugin'
-apply plugin: 'kotlin-parcelize'
+//apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 31
@@ -17,6 +18,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    dataBinding {
+        enabled = true
     }
 
     buildTypes {
@@ -75,11 +80,11 @@ dependencies {
     androidTestImplementation "androidx.room:room-testing:2.3.0"
 
     // Data binding
-//    kapt "com.android.databinding:compiler:3.2.0-alpha10"
-//    kapt "androidx.databinding:databinding-common:4.2.2"
+    kapt "com.android.databinding:compiler:3.2.0-alpha10"
+    kapt "androidx.databinding:databinding-common:7.0.2"
 
     // DataStore
-    implementation "androidx.datastore:datastore-preferences:1.0.0-rc02"
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     // Recyclerview
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
@@ -91,6 +96,9 @@ dependencies {
     // Dagger - Hilt
     implementation "com.google.dagger:hilt-android:2.36"
     kapt "com.google.dagger:hilt-android-compiler:2.36"
+
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
 
     // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'

@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/exercisesFragment"
-        android:name="com.github.christianmsc.ExercisesFragment"
+        android:name="com.github.christianmsc.com.github.christianmsc.ui.fragments.exercises.ExercisesFragment"
         android:label="Exercises"
         tools:layout="@layout/fragment_exercises" />
     <fragment
         android:id="@+id/favoritesExercisesFragment"
-        android:name="com.github.christianmsc.FavoritesExercisesFragment"
+        android:name="com.github.christianmsc.com.github.christianmsc.ui.fragments.favorites.FavoritesExercisesFragment"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorites_exercises" />
     <fragment
         android:id="@+id/randomExerciseFragment"
-        android:name="com.github.christianmsc.RandomExerciseFragment"
+        android:name="com.github.christianmsc.com.github.christianmsc.ui.fragments.randomexercise.RandomExerciseFragment"
         android:label="Random Exercise"
         tools:layout="@layout/fragment_random_exercise" />
 </navigation>

@@ -1,21 +1,21 @@
-package com.github.christianmsc
+package com.github.christianmsc.com.github.christianmsc.ui.fragments.randomexercise
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.christianmsc.R
 
-class ExercisesFragment : Fragment() {
+
+class RandomExerciseFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_exercises, container, false)
-
-        return view
+        return inflater.inflate(R.layout.fragment_random_exercise, container, false)
     }
 
 }
