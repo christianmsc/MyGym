@@ -10,6 +10,10 @@ class Constants {
         // API Headers Keys
         const val HEADER_API_HOST = "x-rapidapi-host"
         const val HEADER_API_KEY = "x-rapidapi-key"
+
+        // ROOM Database
+        const val DATABASE_NAME = "exercises_database"
+        const val EXERCISES_TABLE = "exercises_table"
     }
 
 }

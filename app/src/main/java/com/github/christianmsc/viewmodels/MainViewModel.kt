@@ -4,13 +4,13 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.github.christianmsc.com.github.christianmsc.data.Repository
+import com.github.christianmsc.com.github.christianmsc.data.database.ExercisesEntity
 import com.github.christianmsc.com.github.christianmsc.models.Exercise
 import com.github.christianmsc.com.github.christianmsc.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.lang.Exception
@@ -22,6 +22,17 @@ class MainViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application) {
 
+    /** ROOM DATABASE **/
+
+    val readExercises: LiveData<List<ExercisesEntity>> =
+        repository.local.readDatabase().asLiveData()
+
+    private fun insertExercises(exercisesEntity: ExercisesEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertExercises(exercisesEntity)
+        }
+
+    /** RETROFIT **/
     var exercisesResponse: MutableLiveData<NetworkResult<Exercise>> = MutableLiveData()
 
     fun getExercises(headers: Map<String, String>) = viewModelScope.launch {
@@ -30,16 +41,26 @@ class MainViewModel @Inject constructor(
 
     private suspend fun getExercisesSafeCall(headers: Map<String, String>) {
         exercisesResponse.value = NetworkResult.Loading()
-        if(hasInternetConnection()){
-           try {
+        if (hasInternetConnection()) {
+            try {
                 val response = repository.remote.getExercises(headers)
-               exercisesResponse.value = handleExercisesResponse(response)
-           } catch (e: Exception){
-               exercisesResponse.value = NetworkResult.Error("Exercises not found.")
-           }
+                exercisesResponse.value = handleExercisesResponse(response)
+
+                val exercises = exercisesResponse.value!!.data
+                if (exercises != null) {
+                    offlineCacheExercises(exercises)
+                }
+            } catch (e: Exception) {
+                exercisesResponse.value = NetworkResult.Error("Exercises not found.")
+            }
         } else {
             exercisesResponse.value = NetworkResult.Error("No Internet Connection")
         }
+    }
+
+    private fun offlineCacheExercises(exercises: Exercise) {
+        val exercisesEntity = ExercisesEntity(exercises)
+        insertExercises(exercisesEntity)
     }
 
     private fun handleExercisesResponse(response: Response<Exercise>): NetworkResult<Exercise>? {
