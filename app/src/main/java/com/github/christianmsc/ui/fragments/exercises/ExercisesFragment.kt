@@ -16,7 +16,9 @@ import com.github.christianmsc.com.github.christianmsc.adapters.ExercisesAdapter
 import com.github.christianmsc.com.github.christianmsc.util.Constants.Companion.API_HOST
 import com.github.christianmsc.com.github.christianmsc.util.Constants.Companion.API_KEY
 import com.github.christianmsc.com.github.christianmsc.util.NetworkResult
+import com.github.christianmsc.com.github.christianmsc.util.observeOnce
 import com.github.christianmsc.com.github.christianmsc.viewmodels.ExercisesViewModel
+import com.github.christianmsc.databinding.FragmentExercisesBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_exercises.view.*
 import kotlinx.coroutines.launch
@@ -24,10 +26,11 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class ExercisesFragment : Fragment() {
 
+    private var _binding: FragmentExercisesBinding? = null
+    private val binding get() = _binding!!
     private lateinit var mainViewModel: MainViewModel
     private lateinit var exercisesViewModel: ExercisesViewModel
     private val mAdapter by lazy { ExercisesAdapter() }
-    private lateinit var mView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,23 +45,25 @@ class ExercisesFragment : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_exercises, container, false)
+        _binding = FragmentExercisesBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        binding.mainViewModel = mainViewModel
 
         setupRecyclerView()
         readDatabase()
 
-        return mView
+        return binding.root
     }
 
     private fun setupRecyclerView() {
-        mView.recyclerview.adapter = mAdapter
-        mView.recyclerview.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerview.adapter = mAdapter
+        binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
         showShimmerEffect()
     }
 
     private fun readDatabase() {
         lifecycleScope.launch {
-            mainViewModel.readExercises.observe(viewLifecycleOwner, { database ->
+            mainViewModel.readExercises.observeOnce(viewLifecycleOwner, { database ->
                 if (database.isNotEmpty()) {
                     Log.d("ExercisesFragment", "readDatabase called")
                     mAdapter.setData(database[0].exercise)
@@ -106,14 +111,18 @@ class ExercisesFragment : Fragment() {
     }
 
     private fun showShimmerEffect() {
-        mView.shimmer_view_container.visibility = View.VISIBLE
-        mView.shimmer_view_container.showShimmer(true)
+        binding.shimmerViewContainer.visibility = View.VISIBLE
+        binding.shimmerViewContainer.showShimmer(true)
     }
 
     private fun hideShimmerEffect() {
-        mView.shimmer_view_container.hideShimmer()
-        mView.shimmer_view_container.visibility = View.GONE
-        mView.recyclerview.visibility = View.VISIBLE
+        binding.shimmerViewContainer.hideShimmer()
+        binding.shimmerViewContainer.visibility = View.GONE
+        binding.recyclerview.visibility = View.VISIBLE
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

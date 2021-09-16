@@ -4,6 +4,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import coil.load
+import com.github.christianmsc.R
 
 class ExercisesRowBinding {
 
@@ -14,10 +15,11 @@ class ExercisesRowBinding {
         fun loadGifFromUrl(imageView: ImageView, imageUrl: String){
             imageView.load(imageUrl) {
                 crossfade(durationMillis = 600)
+                error(R.drawable.ic_error_placeholder)
             }
         }
 
-        @BindingAdapter(value = ["target", "bodyPart"], requireAll = true)
+        @BindingAdapter("target", "bodyPart", requireAll = true)
         @JvmStatic
         fun setDescriptionText(textView: TextView, target: String, bodyPart: String){
             textView.text = "Target: $target. Body Part: $bodyPart"
