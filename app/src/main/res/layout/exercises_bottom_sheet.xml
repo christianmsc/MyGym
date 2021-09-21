@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    tools:context=".ui.fragments.exercises.bottomsheet.ExercisesBottomSheet">
+
+
+    <TextView
+        android:id="@+id/bodyPart_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/exercise_bodyPart"
+        android:textColor="@color/dark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <HorizontalScrollView
+        android:id="@+id/exerciseBodyPart_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bodyPart_txt">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/exerciseBodyPart_chipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:checkedChip="@+id/back_chip"
+                app:selectionRequired="true"
+                app:singleLine="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/back_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/back"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/cardio_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cardio"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/chest_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chest"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/lower_arms_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lower_arms"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/lower_legs_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lower_legs"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/neck_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/neck"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/shoulders_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/shoulders"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/upper_arms_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upper_arms"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/upper_legs_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upper_legs"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/waist_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/waist"/>
+
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/target_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/target"
+        android:textColor="@color/dark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseBodyPart_scrollView" />
+
+    <HorizontalScrollView
+        android:id="@+id/exerciseTarget_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/target_txt">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/exerciseTarget_chipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:checkedChip="@+id/abductors_chip"
+                app:selectionRequired="true"
+                app:singleLine="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/abductors_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/abductors"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/abs_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/abs"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/adductors_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/adductors"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/biceps_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/biceps"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/calves_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/calves"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/cardiovascular_system_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cardiovascular_system"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/delts_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delts"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/forearms_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/forearms"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/glutes_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/glutes"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/hamstrings_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hamstrings"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/lats_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lats"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/levator_scapulae_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/levator_scapulae"/>
+
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/pectorals_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pectorals"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/quads_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/quads"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/serratus_anterior_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/serratus_anterior"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/spine_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/spine"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/traps_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/traps"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/triceps_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/triceps"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/upper_back_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upper_back"/>
+
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/apply_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/apply"
+        style="@style/Widget.MaterialComponents.Button"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseTarget_scrollView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

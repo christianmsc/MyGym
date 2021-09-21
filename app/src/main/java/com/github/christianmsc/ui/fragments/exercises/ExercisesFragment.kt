@@ -9,22 +9,23 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.christianmsc.R
 import com.github.christianmsc.com.github.christianmsc.viewmodels.MainViewModel
 import com.github.christianmsc.com.github.christianmsc.adapters.ExercisesAdapter
-import com.github.christianmsc.com.github.christianmsc.util.Constants.Companion.API_HOST
-import com.github.christianmsc.com.github.christianmsc.util.Constants.Companion.API_KEY
 import com.github.christianmsc.com.github.christianmsc.util.NetworkResult
 import com.github.christianmsc.com.github.christianmsc.util.observeOnce
 import com.github.christianmsc.com.github.christianmsc.viewmodels.ExercisesViewModel
 import com.github.christianmsc.databinding.FragmentExercisesBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_exercises.view.*
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ExercisesFragment : Fragment() {
+
+    private val args by navArgs<ExercisesFragmentArgs>()
 
     private var _binding: FragmentExercisesBinding? = null
     private val binding get() = _binding!!
@@ -52,6 +53,10 @@ class ExercisesFragment : Fragment() {
         setupRecyclerView()
         readDatabase()
 
+        binding.exercisesFab.setOnClickListener{
+            findNavController().navigate(R.id.action_exercisesFragment_to_exercisesBottomSheet)
+        }
+
         return binding.root
     }
 
@@ -64,7 +69,7 @@ class ExercisesFragment : Fragment() {
     private fun readDatabase() {
         lifecycleScope.launch {
             mainViewModel.readExercises.observeOnce(viewLifecycleOwner, { database ->
-                if (database.isNotEmpty()) {
+                if (database.isNotEmpty() && !args.backFromBottomSheet) {
                     Log.d("ExercisesFragment", "readDatabase called")
                     mAdapter.setData(database[0].exercise)
                     hideShimmerEffect()
@@ -77,7 +82,7 @@ class ExercisesFragment : Fragment() {
 
     private fun requestApiData() {
         Log.d("ExercisesFragment", "requestApiData called")
-        mainViewModel.getExercises(exercisesViewModel.applyHeaders())
+        mainViewModel.getExercises(exercisesViewModel.applyQueries())
         mainViewModel.exercisesResponse.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is NetworkResult.Success -> {

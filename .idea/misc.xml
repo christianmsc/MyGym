@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/MyGym/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/MyGym/app/src/main/res/layout/exercises_bottom_sheet.xml" value="0.30364583333333334" />
         <entry key="..\:/MyGym/app/src/main/res/layout/exercises_row_layout.xml" value="0.24295432458697766" />
         <entry key="..\:/MyGym/app/src/main/res/layout/fragment_exercises.xml" value="0.25416666666666665" />
         <entry key="..\:/MyGym/app/src/main/res/layout/fragment_favorites_exercises.xml" value="0.25416666666666665" />

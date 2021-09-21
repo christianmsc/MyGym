@@ -9,7 +9,15 @@
         android:id="@+id/exercisesFragment"
         android:name="com.github.christianmsc.com.github.christianmsc.ui.fragments.exercises.ExercisesFragment"
         android:label="Exercises"
-        tools:layout="@layout/fragment_exercises" />
+        tools:layout="@layout/fragment_exercises" >
+        <action
+            android:id="@+id/action_exercisesFragment_to_exercisesBottomSheet"
+            app:destination="@id/exercisesBottomSheet" />
+        <argument
+            android:name="backFromBottomSheet"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
     <fragment
         android:id="@+id/favoritesExercisesFragment"
         android:name="com.github.christianmsc.com.github.christianmsc.ui.fragments.favorites.FavoritesExercisesFragment"
@@ -20,4 +28,13 @@
         android:name="com.github.christianmsc.com.github.christianmsc.ui.fragments.randomexercise.RandomExerciseFragment"
         android:label="Random Exercise"
         tools:layout="@layout/fragment_random_exercise" />
+    <dialog
+        android:id="@+id/exercisesBottomSheet"
+        android:name="com.github.christianmsc.ui.fragments.exercises.bottomsheet.ExercisesBottomSheet"
+        android:label="exercises_bottom_sheet"
+        tools:layout="@layout/exercises_bottom_sheet" >
+        <action
+            android:id="@+id/action_exercisesBottomSheet_to_exercisesFragment"
+            app:destination="@id/exercisesFragment" />
+    </dialog>
 </navigation>
