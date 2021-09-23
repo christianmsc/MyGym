@@ -20,11 +20,13 @@ class Constants {
         const val DEFAULT_EXERCISES_NUMBER = "50"
         const val DEFAULT_BODY_PART = "waist"
         const val DEFAULT_TARGET = "abs"
+
         const val PREFERENCES_NAME = "exercises_references"
         const val PREFERENCES_BODY_PART = "bodyPart"
         const val PREFERENCES_BODY_PART_ID = "bodyPartId"
         const val PREFERENCES_TARGET = "target"
         const val PREFERENCES_TARGET_ID = "targetId"
+        const val PREFERENCES_BACK_ONLINE = "backOnline"
     }
 
 }

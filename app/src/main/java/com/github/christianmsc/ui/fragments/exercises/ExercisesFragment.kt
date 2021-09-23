@@ -15,11 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.christianmsc.R
 import com.github.christianmsc.com.github.christianmsc.viewmodels.MainViewModel
 import com.github.christianmsc.com.github.christianmsc.adapters.ExercisesAdapter
+import com.github.christianmsc.com.github.christianmsc.util.NetworkListener
 import com.github.christianmsc.com.github.christianmsc.util.NetworkResult
 import com.github.christianmsc.com.github.christianmsc.util.observeOnce
 import com.github.christianmsc.com.github.christianmsc.viewmodels.ExercisesViewModel
 import com.github.christianmsc.databinding.FragmentExercisesBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -32,6 +34,7 @@ class ExercisesFragment : Fragment() {
     private lateinit var mainViewModel: MainViewModel
     private lateinit var exercisesViewModel: ExercisesViewModel
     private val mAdapter by lazy { ExercisesAdapter() }
+    private lateinit var networkListener: NetworkListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,10 +54,29 @@ class ExercisesFragment : Fragment() {
         binding.mainViewModel = mainViewModel
 
         setupRecyclerView()
-        readDatabase()
 
-        binding.exercisesFab.setOnClickListener{
-            findNavController().navigate(R.id.action_exercisesFragment_to_exercisesBottomSheet)
+        exercisesViewModel.readBackOnline.observe(viewLifecycleOwner, {
+            exercisesViewModel.backOnline = it
+        })
+
+        lifecycleScope.launch {
+            networkListener = NetworkListener()
+            networkListener.checkNetworkAvailability(requireContext())
+                .collect { status ->
+                    Log.d("NetworkListener", status.toString())
+                    exercisesViewModel.networkStatus = status
+                    exercisesViewModel.showNetworkStatus()
+                    readDatabase()
+                }
+        }
+
+        binding.exercisesFab.setOnClickListener {
+            if(exercisesViewModel.networkStatus){
+                findNavController().navigate(R.id.action_exercisesFragment_to_exercisesBottomSheet)
+            }
+            else {
+                exercisesViewModel.showNetworkStatus()
+            }
         }
 
         return binding.root
