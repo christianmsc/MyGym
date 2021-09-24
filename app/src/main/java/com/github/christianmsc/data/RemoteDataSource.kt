@@ -12,4 +12,8 @@ class RemoteDataSource @Inject constructor(
     suspend fun getExercises(headers: Map<String,String>) : Response<Exercise> {
         return exercisesApi.getExercises(headers)
     }
+
+    suspend fun searchExercises(searchQuery: Map<String, String>): Response<Exercise>{
+        return exercisesApi.searchExercises(searchQuery)
+    }
 }

@@ -7,6 +7,7 @@ class Constants {
         const val BASE_URL = "https://json-server-my-gym.herokuapp.com"
 
         // API Query Keys
+        const val QUERY_SEARCH = "q"
         const val QUERY_NUMBER = "_limit"
         const val QUERY_BODY_PART = "bodyPart"
         const val QUERY_BODY_TARGET = "target"

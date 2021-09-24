@@ -12,4 +12,9 @@ interface ExercisesApi {
         @QueryMap queries : Map<String, String>
     ): Response<Exercise>
 
+    @GET("/exercises")
+    suspend fun searchExercises(
+        @QueryMap queries: Map<String, String>
+    ): Response<Exercise>
+
 }

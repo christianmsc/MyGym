@@ -12,6 +12,7 @@ import com.github.christianmsc.com.github.christianmsc.util.Constants.Companion.
 import com.github.christianmsc.com.github.christianmsc.util.Constants.Companion.QUERY_BODY_PART
 import com.github.christianmsc.com.github.christianmsc.util.Constants.Companion.QUERY_BODY_TARGET
 import com.github.christianmsc.com.github.christianmsc.util.Constants.Companion.QUERY_NUMBER
+import com.github.christianmsc.com.github.christianmsc.util.Constants.Companion.QUERY_SEARCH
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -57,6 +58,12 @@ class ExercisesViewModel @Inject constructor(
         queries[QUERY_BODY_PART] = bodyPart
         queries[QUERY_BODY_TARGET] = target
 
+        return queries
+    }
+
+    fun applySearchQuery(searchQuery: String): HashMap<String, String> {
+        val queries: HashMap<String, String> = HashMap()
+        queries[QUERY_SEARCH] = searchQuery
         return queries
     }
 

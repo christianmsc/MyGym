@@ -34,9 +34,14 @@ class MainViewModel @Inject constructor(
 
     /** RETROFIT **/
     var exercisesResponse: MutableLiveData<NetworkResult<Exercise>> = MutableLiveData()
+    var searchedExercisesResponse: MutableLiveData<NetworkResult<Exercise>> = MutableLiveData()
 
     fun getExercises(headers: Map<String, String>) = viewModelScope.launch {
         getExercisesSafeCall(headers)
+    }
+
+    fun searchExercises(searchQuery: Map<String, String>) = viewModelScope.launch {
+        searchExercisesSafeCall(searchQuery)
     }
 
     private suspend fun getExercisesSafeCall(headers: Map<String, String>) {
@@ -55,6 +60,20 @@ class MainViewModel @Inject constructor(
             }
         } else {
             exercisesResponse.value = NetworkResult.Error("No Internet Connection")
+        }
+    }
+
+    private suspend fun searchExercisesSafeCall(searchQuery: Map<String, String>) {
+        searchedExercisesResponse.value = NetworkResult.Loading()
+        if (hasInternetConnection()) {
+            try {
+                val response = repository.remote.searchExercises(searchQuery)
+                searchedExercisesResponse.value = handleExercisesResponse(response)
+            } catch (e: Exception) {
+                searchedExercisesResponse.value = NetworkResult.Error("Exercises not found.")
+            }
+        } else {
+            searchedExercisesResponse.value = NetworkResult.Error("No Internet Connection")
         }
     }
 
