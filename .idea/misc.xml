@@ -3,12 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/MyGym/app/src/main/res/drawable/gradient_overlay.xml" value="0.31979166666666664" />
+        <entry key="..\:/MyGym/app/src/main/res/layout/activity_details.xml" value="0.2545289855072464" />
         <entry key="..\:/MyGym/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/MyGym/app/src/main/res/layout/exercises_bottom_sheet.xml" value="0.30364583333333334" />
         <entry key="..\:/MyGym/app/src/main/res/layout/exercises_row_layout.xml" value="0.24295432458697766" />
         <entry key="..\:/MyGym/app/src/main/res/layout/fragment_exercises.xml" value="0.25416666666666665" />
         <entry key="..\:/MyGym/app/src/main/res/layout/fragment_favorites_exercises.xml" value="0.25416666666666665" />
+        <entry key="..\:/MyGym/app/src/main/res/layout/fragment_overview.xml" value="0.4444444444444444" />
         <entry key="..\:/MyGym/app/src/main/res/layout/fragment_random_exercise.xml" value="0.25416666666666665" />
+        <entry key="..\:/MyGym/app/src/main/res/layout/fragment_variations.xml" value="0.159375" />
         <entry key="..\:/MyGym/app/src/main/res/layout/fragment_workout.xml" value="0.25416666666666665" />
         <entry key="..\:/MyGym/app/src/main/res/layout/placeholder_row_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/MyGym/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />

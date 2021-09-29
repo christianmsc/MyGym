@@ -17,6 +17,9 @@
             android:name="backFromBottomSheet"
             app:argType="boolean"
             android:defaultValue="false" />
+        <action
+            android:id="@+id/action_exercisesFragment_to_detailsActivity"
+            app:destination="@id/detailsActivity" />
     </fragment>
     <fragment
         android:id="@+id/favoritesExercisesFragment"
@@ -37,4 +40,13 @@
             android:id="@+id/action_exercisesBottomSheet_to_exercisesFragment"
             app:destination="@id/exercisesFragment" />
     </dialog>
+    <activity
+        android:id="@+id/detailsActivity"
+        android:name="com.github.christianmsc.ui.DetailsActivity"
+        android:label="Details"
+        tools:layout="@layout/activity_details" >
+        <argument
+            android:name="result"
+            app:argType="com.github.christianmsc.com.github.christianmsc.models.ExerciseItem" />
+    </activity>
 </navigation>

@@ -113,6 +113,9 @@ dependencies {
     // Image Loading library Coil
     implementation "io.coil-kt:coil:1.2.1"
 
+    // Animated Gif
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+
     // Gson
     implementation 'com.google.code.gson:gson:2.8.6'
 
