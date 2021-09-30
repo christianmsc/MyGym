@@ -11,8 +11,10 @@ import com.github.christianmsc.com.github.christianmsc.adapters.PagerAdapter
 import com.github.christianmsc.com.github.christianmsc.ui.fragments.doalso.DoAlsoFragment
 import com.github.christianmsc.com.github.christianmsc.ui.fragments.overview.OverviewFragment
 import com.github.christianmsc.com.github.christianmsc.ui.fragments.variations.VariationsFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_details.*
 
+@AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
 
     private val args by navArgs<DetailsActivityArgs>()

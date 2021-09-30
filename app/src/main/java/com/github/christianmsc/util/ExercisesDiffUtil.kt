@@ -3,9 +3,9 @@ package com.github.christianmsc.com.github.christianmsc.util
 import androidx.recyclerview.widget.DiffUtil
 import com.github.christianmsc.com.github.christianmsc.models.ExerciseItem
 
-class ExercisesDiffUtil (
-    private val oldList: List<ExerciseItem>,
-    private val newList: List<ExerciseItem>) : DiffUtil.Callback() {
+class ExercisesDiffUtil<T> (
+    private val oldList: List<T>,
+    private val newList: List<T>) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int {
         return oldList.size

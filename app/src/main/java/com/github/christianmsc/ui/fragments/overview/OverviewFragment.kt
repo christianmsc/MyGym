@@ -10,6 +10,7 @@ import coil.load
 import com.bumptech.glide.Glide
 import com.github.christianmsc.R
 import com.github.christianmsc.com.github.christianmsc.models.ExerciseItem
+import com.github.christianmsc.com.github.christianmsc.util.Constants.Companion.EXERCISE_RESULT_KEY
 import kotlinx.android.synthetic.main.fragment_overview.view.*
 
 
@@ -23,7 +24,7 @@ class OverviewFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_overview, container, false)
 
         val args = arguments
-        val myBundle: ExerciseItem? = args?.getParcelable("exerciseBundle")
+        val myBundle: ExerciseItem? = args?.getParcelable(EXERCISE_RESULT_KEY)
 
         Glide.with(view).load(myBundle?.gifUrl).into(view.main_imageView);
         view.title_textView.text = myBundle?.name
