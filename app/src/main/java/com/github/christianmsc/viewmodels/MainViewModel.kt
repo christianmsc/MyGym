@@ -6,7 +6,8 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.github.christianmsc.com.github.christianmsc.data.Repository
-import com.github.christianmsc.com.github.christianmsc.data.database.ExercisesEntity
+import com.github.christianmsc.com.github.christianmsc.data.database.entities.ExercisesEntity
+import com.github.christianmsc.com.github.christianmsc.data.database.entities.FavoritesEntity
 import com.github.christianmsc.com.github.christianmsc.models.Exercise
 import com.github.christianmsc.com.github.christianmsc.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,12 +26,26 @@ class MainViewModel @Inject constructor(
     /** ROOM DATABASE **/
 
     val readExercises: LiveData<List<ExercisesEntity>> =
-        repository.local.readDatabase().asLiveData()
+        repository.local.readExercises().asLiveData()
+    val readFavoriteExercises: LiveData<List<FavoritesEntity>> =
+        repository.local.readFavoriteExercises().asLiveData()
 
     private fun insertExercises(exercisesEntity: ExercisesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.insertExercises(exercisesEntity)
         }
+
+    fun insertFavoriteExercise(favoritesEntity: FavoritesEntity) = viewModelScope.launch {
+        repository.local.insertFavoriteExercise(favoritesEntity)
+    }
+
+    fun deleteFavoriteExercise(favoritesEntity: FavoritesEntity) = viewModelScope.launch {
+        repository.local.deleteFavoriteExercise(favoritesEntity)
+    }
+
+    private fun deleteAllFavoriteExercises() = viewModelScope.launch {
+        repository.local.deleteAllFavoriteExercises()
+    }
 
     /** RETROFIT **/
     var exercisesResponse: MutableLiveData<NetworkResult<Exercise>> = MutableLiveData()

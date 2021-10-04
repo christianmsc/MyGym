@@ -91,11 +91,10 @@
         android:id="@+id/chest_imageView"
         android:layout_width="12dp"
         android:layout_height="12dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
         android:src="@drawable/ic_checkmark"
-        app:layout_constraintBottom_toBottomOf="@+id/back_textView"
-        app:layout_constraintStart_toEndOf="@+id/back_textView"
-        app:layout_constraintTop_toTopOf="@+id/back_textView"
+        app:layout_constraintStart_toStartOf="@+id/cardio_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/cardio_imageView"
         app:tint="@color/darkGray" />
 
     <TextView
@@ -114,11 +113,12 @@
         android:id="@+id/lowerArms_imageView"
         android:layout_width="12dp"
         android:layout_height="12dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
         android:src="@drawable/ic_checkmark"
         app:tint="@color/darkGray"
-        app:layout_constraintStart_toStartOf="@+id/chest_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/chest_imageView" />
+        app:layout_constraintBottom_toBottomOf="@+id/back_textView"
+        app:layout_constraintStart_toEndOf="@+id/back_textView"
+        app:layout_constraintTop_toTopOf="@+id/back_textView"/>
 
     <TextView
         android:id="@+id/lowerArms_textView"
@@ -136,11 +136,10 @@
         android:id="@+id/lowerLegs_imageView"
         android:layout_width="12dp"
         android:layout_height="12dp"
-        android:layout_marginStart="34dp"
+        android:layout_marginTop="12dp"
         android:src="@drawable/ic_checkmark"
-        app:layout_constraintBottom_toBottomOf="@+id/chest_textView"
-        app:layout_constraintStart_toEndOf="@+id/chest_textView"
-        app:layout_constraintTop_toTopOf="@+id/chest_textView"
+        app:layout_constraintStart_toStartOf="@+id/lowerArms_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/lowerArms_imageView"
         app:tint="@color/darkGray" />
 
     <TextView
@@ -184,9 +183,9 @@
         android:layout_marginStart="10dp"
         android:src="@drawable/ic_checkmark"
         app:tint="@color/darkGray"
-        app:layout_constraintBottom_toBottomOf="@+id/lowerLegs_textView"
-        app:layout_constraintStart_toEndOf="@+id/lowerLegs_textView"
-        app:layout_constraintTop_toTopOf="@+id/lowerLegs_textView" />
+        app:layout_constraintBottom_toBottomOf="@+id/lowerArms_textView"
+        app:layout_constraintStart_toEndOf="@+id/lowerArms_textView"
+        app:layout_constraintTop_toTopOf="@+id/lowerArms_textView" />
 
     <TextView
         android:id="@+id/shoulders_textView"
@@ -277,7 +276,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardio_imageView">
+        app:layout_constraintTop_toBottomOf="@+id/neck_imageView">
 
         <LinearLayout
             android:layout_width="match_parent"

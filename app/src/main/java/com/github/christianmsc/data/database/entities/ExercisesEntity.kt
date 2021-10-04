@@ -1,4 +1,4 @@
-package com.github.christianmsc.com.github.christianmsc.data.database
+package com.github.christianmsc.com.github.christianmsc.data.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

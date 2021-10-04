@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.github.christianmsc.com.github.christianmsc.data.database.ExercisesEntity
+import com.github.christianmsc.com.github.christianmsc.data.database.entities.ExercisesEntity
 import com.github.christianmsc.com.github.christianmsc.models.Exercise
 import com.github.christianmsc.com.github.christianmsc.util.NetworkResult
 

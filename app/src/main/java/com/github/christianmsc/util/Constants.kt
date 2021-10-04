@@ -18,6 +18,7 @@ class Constants {
         // ROOM Database
         const val DATABASE_NAME = "exercises_database"
         const val EXERCISES_TABLE = "exercises_table"
+        const val FAVORITE_EXERCISES_TABLE="favorite_exercises_table"
 
         // Bottom Sheet and preferences
         const val DEFAULT_EXERCISES_NUMBER = "50"
