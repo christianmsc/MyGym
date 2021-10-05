@@ -25,7 +25,11 @@
         android:id="@+id/favoritesExercisesFragment"
         android:name="com.github.christianmsc.com.github.christianmsc.ui.fragments.favorites.FavoritesExercisesFragment"
         android:label="Favorites"
-        tools:layout="@layout/fragment_favorites_exercises" />
+        tools:layout="@layout/fragment_favorites_exercises" >
+        <action
+            android:id="@+id/action_favoritesExercisesFragment_to_detailsActivity"
+            app:destination="@id/detailsActivity" />
+    </fragment>
     <fragment
         android:id="@+id/randomExerciseFragment"
         android:name="com.github.christianmsc.com.github.christianmsc.ui.fragments.randomexercise.RandomExerciseFragment"
