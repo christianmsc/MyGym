@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ic_random_exercise_background"
+        android:background="@drawable/ic_random_exercise_background_dark"
         tools:context=".com.github.christianmsc.ui.fragments.randomexercise.RandomExerciseFragment">
 
         <com.google.android.material.card.MaterialCardView
