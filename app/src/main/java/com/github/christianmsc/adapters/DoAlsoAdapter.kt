@@ -9,27 +9,27 @@ import coil.load
 import com.github.christianmsc.R
 import com.github.christianmsc.com.github.christianmsc.models.ExerciseItem
 import com.github.christianmsc.com.github.christianmsc.util.ExercisesDiffUtil
-import kotlinx.android.synthetic.main.do_also_row_layout.view.*
+import com.github.christianmsc.databinding.DoAlsoRowLayoutBinding
 import java.util.*
 
 class DoAlsoAdapter: RecyclerView.Adapter<DoAlsoAdapter.MyViewHolder>() {
 
     private var doAlsoList = emptyList<ExerciseItem>()
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
+    class MyViewHolder(val binding: DoAlsoRowLayoutBinding) : RecyclerView.ViewHolder(binding.root) {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.do_also_row_layout, parent, false))
+        return MyViewHolder(DoAlsoRowLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.itemView.doAlso_imageView.load(doAlsoList[position].gifUrl){
+        holder.binding.doAlsoImageView.load(doAlsoList[position].gifUrl){
             crossfade(600)
             error(R.drawable.ic_error_placeholder)
         }
-        holder.itemView.doAlso_name.text = doAlsoList[position].name.capitalize(Locale.ROOT)
-        holder.itemView.doAlso_bodyPart.text = doAlsoList[position].bodyPart
-        holder.itemView.doAlso_target.text = doAlsoList[position].target
+        holder.binding.doAlsoName.text = doAlsoList[position].name.capitalize(Locale.ROOT)
+        holder.binding.doAlsoBodyPart.text = doAlsoList[position].bodyPart
+        holder.binding.doAlsoTarget.text = doAlsoList[position].target
     }
 
     override fun getItemCount(): Int {

@@ -13,7 +13,6 @@ import com.github.christianmsc.com.github.christianmsc.util.ExercisesDiffUtil
 import com.github.christianmsc.com.github.christianmsc.viewmodels.MainViewModel
 import com.github.christianmsc.databinding.FavoriteExercisesRowLayoutBinding
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.favorite_exercises_row_layout.view.*
 
 class FavoriteExercisesAdapter(
     private val requireActivity: FragmentActivity,
@@ -29,7 +28,7 @@ class FavoriteExercisesAdapter(
     private var myViewHolders = arrayListOf<MyViewHolder>()
     private var favoriteExercises = emptyList<FavoritesEntity>()
 
-    class MyViewHolder(private val binding: FavoriteExercisesRowLayoutBinding) :
+    class MyViewHolder(val binding: FavoriteExercisesRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(favoritesEntity: FavoritesEntity) {
@@ -63,10 +62,12 @@ class FavoriteExercisesAdapter(
         val currentExercise = favoriteExercises[position]
         holder.bind(currentExercise)
 
+        saveItemStateOnScroll(currentExercise, holder)
+
         /**
          * Single click listener
          */
-        holder.itemView.favoriteExercisesRowLayout.setOnClickListener {
+        holder.binding.favoriteExercisesRowLayout.setOnClickListener {
             if (multiSelection) {
                 applySelection(holder, currentExercise)
             } else {
@@ -81,16 +82,24 @@ class FavoriteExercisesAdapter(
         /**
          * Long click listener
          */
-        holder.itemView.favoriteExercisesRowLayout.setOnLongClickListener {
+        holder.binding.favoriteExercisesRowLayout.setOnLongClickListener {
             if (!multiSelection) {
                 multiSelection = true
                 requireActivity.startActionMode(this)
                 applySelection(holder, currentExercise)
                 true
             } else {
-                multiSelection = false
-                false
+                applySelection(holder, currentExercise)
+                true
             }
+        }
+    }
+
+    private fun saveItemStateOnScroll(currentExercise: FavoritesEntity, holder: MyViewHolder){
+        if (selectedExercises.contains(currentExercise)) {
+            changeExerciseStyle(holder, R.color.cardBackgroundLightColor, R.color.colorPrimary)
+        } else {
+            changeExerciseStyle(holder, R.color.cardBackgroundColor, R.color.strokeColor)
         }
     }
 
@@ -107,10 +116,10 @@ class FavoriteExercisesAdapter(
     }
 
     private fun changeExerciseStyle(holder: MyViewHolder, backgorundColor: Int, strokeColor: Int) {
-        holder.itemView.favoriteExercisesRowLayout.setBackgroundColor(
+        holder.binding.favoriteExercisesRowLayout.setBackgroundColor(
             ContextCompat.getColor(requireActivity, backgorundColor)
         )
-        holder.itemView.favorite_row_cardView.strokeColor =
+        holder.binding.favoriteRowCardView.strokeColor =
             ContextCompat.getColor(requireActivity, strokeColor)
     }
 
@@ -118,6 +127,7 @@ class FavoriteExercisesAdapter(
         when (selectedExercises.size) {
             0 -> {
                 mActionMode.finish()
+                multiSelection = false
             }
             1 -> {
                 mActionMode.title = "${selectedExercises.size} item selected"

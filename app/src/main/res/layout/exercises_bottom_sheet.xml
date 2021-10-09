@@ -44,10 +44,17 @@
                 android:id="@+id/exerciseBodyPart_chipGroup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:checkedChip="@+id/back_chip"
+                app:checkedChip="@+id/upper_arms_chip"
                 app:selectionRequired="true"
                 app:singleLine="true"
                 app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/upper_arms_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upper_arms"/>
 
                 <com.google.android.material.chip.Chip
                     style="@style/CustomChipStyle"
@@ -97,13 +104,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/shoulders"/>
-
-                <com.google.android.material.chip.Chip
-                    style="@style/CustomChipStyle"
-                    android:id="@+id/upper_arms_chip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/upper_arms"/>
 
                 <com.google.android.material.chip.Chip
                     style="@style/CustomChipStyle"
@@ -158,10 +158,17 @@
                 android:id="@+id/exerciseTarget_chipGroup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:checkedChip="@+id/abductors_chip"
+                app:checkedChip="@+id/biceps_chip"
                 app:selectionRequired="true"
                 app:singleLine="true"
                 app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:id="@+id/biceps_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/biceps"/>
 
                 <com.google.android.material.chip.Chip
                     style="@style/CustomChipStyle"
@@ -183,13 +190,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/adductors"/>
-
-                <com.google.android.material.chip.Chip
-                    style="@style/CustomChipStyle"
-                    android:id="@+id/biceps_chip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/biceps"/>
 
                 <com.google.android.material.chip.Chip
                     style="@style/CustomChipStyle"

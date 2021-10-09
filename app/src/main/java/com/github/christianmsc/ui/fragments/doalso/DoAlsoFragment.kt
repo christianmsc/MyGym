@@ -9,18 +9,20 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.github.christianmsc.R
 import com.github.christianmsc.com.github.christianmsc.adapters.DoAlsoAdapter
 import com.github.christianmsc.com.github.christianmsc.models.ExerciseItem
 import com.github.christianmsc.com.github.christianmsc.util.Constants
 import com.github.christianmsc.com.github.christianmsc.util.observeOnce
 import com.github.christianmsc.com.github.christianmsc.viewmodels.MainViewModel
+import com.github.christianmsc.databinding.FragmentDoAlsoBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_do_also.view.*
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DoAlsoFragment : Fragment() {
+
+    private var _binding: FragmentDoAlsoBinding? = null
+    private val binding get() = _binding!!
 
     private val mAdapter: DoAlsoAdapter by lazy { DoAlsoAdapter() }
     private lateinit var mainViewModel: MainViewModel
@@ -33,25 +35,25 @@ class DoAlsoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_do_also, container, false)
+        _binding = FragmentDoAlsoBinding.inflate(inflater, container, false)
 
         val args = arguments
         val myBundle: ExerciseItem? = args?.getParcelable(Constants.EXERCISE_RESULT_KEY)
 
-        setupRecyclerView(view)
+        setupRecyclerView()
 
         lifecycleScope.launch {
             findDoAlsoList(myBundle!!.equipment)
         }
 
-        return view
+        return binding.root
     }
 
-    private fun setupRecyclerView(view: View){
-        view.doAlso_recyclerView.adapter = mAdapter
-        view.doAlso_recyclerView.layoutManager = LinearLayoutManager(requireContext())
+    private fun setupRecyclerView(){
+        binding.doAlsoRecyclerView.adapter = mAdapter
+        binding.doAlsoRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun findDoAlsoList(equipment: String) {
@@ -68,4 +70,8 @@ class DoAlsoFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

@@ -9,14 +9,13 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.github.christianmsc.R
 import com.github.christianmsc.com.github.christianmsc.adapters.VariationsAdapter
 import com.github.christianmsc.com.github.christianmsc.models.ExerciseItem
 import com.github.christianmsc.com.github.christianmsc.util.Constants.Companion.EXERCISE_RESULT_KEY
 import com.github.christianmsc.com.github.christianmsc.util.observeOnce
 import com.github.christianmsc.com.github.christianmsc.viewmodels.MainViewModel
+import com.github.christianmsc.databinding.FragmentVariationsBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_variations.view.*
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -24,6 +23,9 @@ class VariationsFragment : Fragment() {
 
     private val mAdapter: VariationsAdapter by lazy { VariationsAdapter() }
     private lateinit var mainViewModel: MainViewModel
+
+    private var _binding : FragmentVariationsBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,25 +35,25 @@ class VariationsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_variations, container, false)
+       _binding = FragmentVariationsBinding.inflate(inflater, container, false)
 
         val args = arguments
         val myBundle: ExerciseItem? = args?.getParcelable(EXERCISE_RESULT_KEY)
 
-        setupRecyclerView(view)
+        setupRecyclerView()
 
         lifecycleScope.launch {
             findVariations(myBundle!!.bodyPart)
         }
 
-        return view
+        return binding.root
     }
 
-    private fun setupRecyclerView(view: View){
-        view.variations_recyclerView.adapter = mAdapter
-        view.variations_recyclerView.layoutManager = LinearLayoutManager(requireContext())
+    private fun setupRecyclerView(){
+        binding.variationsRecyclerView.adapter = mAdapter
+        binding.variationsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun findVariations(bodyPart: String) {
@@ -68,4 +70,8 @@ class VariationsFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

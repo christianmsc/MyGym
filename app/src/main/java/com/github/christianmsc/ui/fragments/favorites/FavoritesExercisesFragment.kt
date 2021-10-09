@@ -12,7 +12,6 @@ import com.github.christianmsc.com.github.christianmsc.viewmodels.MainViewModel
 import com.github.christianmsc.databinding.FragmentFavoritesExercisesBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_favorites_exercises.view.*
 
 @AndroidEntryPoint
 class FavoritesExercisesFragment : Fragment() {
@@ -31,7 +30,7 @@ class FavoritesExercisesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentFavoritesExercisesBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
@@ -71,8 +70,8 @@ class FavoritesExercisesFragment : Fragment() {
             .show()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
         mAdapter.clearContextualActionMode()
     }

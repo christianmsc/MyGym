@@ -3,7 +3,7 @@ package com.github.christianmsc.com.github.christianmsc.models
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ExerciseItem(

@@ -23,8 +23,8 @@ class Constants {
 
         // Bottom Sheet and preferences
         const val DEFAULT_EXERCISES_NUMBER = "50"
-        const val DEFAULT_BODY_PART = "waist"
-        const val DEFAULT_TARGET = "abs"
+        const val DEFAULT_BODY_PART = "upper arms"
+        const val DEFAULT_TARGET = "biceps"
 
         const val PREFERENCES_NAME = "exercises_references"
         const val PREFERENCES_BODY_PART = "bodyPart"

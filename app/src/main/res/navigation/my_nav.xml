@@ -42,7 +42,9 @@
         tools:layout="@layout/exercises_bottom_sheet" >
         <action
             android:id="@+id/action_exercisesBottomSheet_to_exercisesFragment"
-            app:destination="@id/exercisesFragment" />
+            app:destination="@id/exercisesFragment"
+            app:popUpTo="@id/exercisesFragment"
+            app:popUpToInclusive="true" />
     </dialog>
     <activity
         android:id="@+id/detailsActivity"

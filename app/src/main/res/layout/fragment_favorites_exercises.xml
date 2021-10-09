@@ -23,7 +23,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favoritesExercisesRecyclerView"
-            viewVisibility="@{mainViewModel.readFavoriteExercises}"
+            setVisibility="@{mainViewModel.readFavoriteExercises}"
             setData="@{mAdapter}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -40,7 +40,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:alpha="0.5"
-            viewVisibility="@{mainViewModel.readFavoriteExercises}"
+            setVisibility="@{mainViewModel.readFavoriteExercises}"
             android:src="@android:drawable/star_off"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:alpha="0.5"
-            viewVisibility="@{mainViewModel.readFavoriteExercises}"
+            setVisibility="@{mainViewModel.readFavoriteExercises}"
             android:text="@string/no_favorite_exercises"
             android:textSize="18sp"
             android:textStyle="bold"

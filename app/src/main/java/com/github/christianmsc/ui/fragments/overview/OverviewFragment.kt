@@ -5,74 +5,58 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.content.ContextCompat
-import coil.load
 import com.bumptech.glide.Glide
 import com.github.christianmsc.R
 import com.github.christianmsc.com.github.christianmsc.models.ExerciseItem
 import com.github.christianmsc.com.github.christianmsc.util.Constants.Companion.EXERCISE_RESULT_KEY
-import kotlinx.android.synthetic.main.fragment_overview.view.*
+import com.github.christianmsc.databinding.FragmentOverviewBinding
 
 
 class OverviewFragment : Fragment() {
 
+    private var _binding: FragmentOverviewBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_overview, container, false)
+        _binding = FragmentOverviewBinding.inflate(inflater, container, false)
 
         val args = arguments
-        val myBundle: ExerciseItem? = args?.getParcelable(EXERCISE_RESULT_KEY)
+        val myBundle: ExerciseItem = args!!.getParcelable<ExerciseItem>(EXERCISE_RESULT_KEY) as ExerciseItem
 
-        Glide.with(view).load(myBundle?.gifUrl).into(view.main_imageView);
-        view.title_textView.text = myBundle?.name
-        ("\nEquipment: " + myBundle?.equipment + "\nTarget: " + myBundle?.target).also { view.summary_textView.text = it }
+        Glide.with(binding.root).load(myBundle.gifUrl).into(binding.mainImageView);
+        binding.titleTextView.text = myBundle.name
+        ("\nEquipment: " + myBundle.equipment + "\nTarget: " + myBundle.target).also { binding.summaryTextView.text = it }
 
-        when (myBundle?.bodyPart) {
-            getString(R.string.back) -> {
-                view.back_imageView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-                view.back_textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-            }
-            getString(R.string.cardio) -> {
-                view.cardio_imageView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-                view.cardio_textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-            }
-            getString(R.string.chest) -> {
-                view.chest_imageView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-                view.chest_textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-            }
-            getString(R.string.lower_arms) -> {
-                view.lowerArms_imageView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-                view.lowerArms_textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-            }
-            getString(R.string.lower_legs) -> {
-                view.lowerLegs_imageView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-                view.lowerLegs_textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-            }
-            getString(R.string.neck) -> {
-                view.neck_imageView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-                view.neck_textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-            }
-            getString(R.string.shoulders) -> {
-                view.shoulders_imageView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-                view.shoulders_textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-            }
-            getString(R.string.upper_arms) -> {
-                view.upperArms_imageView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-                view.upperArms_textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-            }
-            getString(R.string.upper_legs) -> {
-                view.upperLegs_imageView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-                view.upperLegs_textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-            }
-            getString(R.string.waist) -> {
-                view.waist_imageView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-                view.waist_textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-            }
+        updateColors(myBundle.bodyPart == getString(R.string.back), binding.backTextView, binding.backImageView)
+        updateColors(myBundle.bodyPart == getString(R.string.cardio), binding.cardioTextView, binding.cardioImageView)
+        updateColors(myBundle.bodyPart == getString(R.string.chest), binding.chestTextView, binding.chestImageView)
+        updateColors(myBundle.bodyPart == getString(R.string.lower_arms), binding.lowerArmsTextView, binding.lowerArmsImageView)
+        updateColors(myBundle.bodyPart == getString(R.string.lower_legs), binding.lowerLegsTextView, binding.lowerLegsImageView)
+        updateColors(myBundle.bodyPart == getString(R.string.neck), binding.neckTextView, binding.neckImageView)
+        updateColors(myBundle.bodyPart == getString(R.string.shoulders), binding.shouldersTextView, binding.shouldersImageView)
+        updateColors(myBundle.bodyPart == getString(R.string.upper_arms), binding.upperArmsTextView, binding.upperArmsImageView)
+        updateColors(myBundle.bodyPart == getString(R.string.upper_legs), binding.upperLegsTextView, binding.upperLegsImageView)
+        updateColors(myBundle.bodyPart == getString(R.string.waist), binding.waistTextView, binding.waistImageView)
+
+        return binding.root
+    }
+
+    private fun updateColors(stateIsOn: Boolean, textView: TextView, imageView: ImageView) {
+        if (stateIsOn) {
+            imageView.setColorFilter(ContextCompat.getColor(requireContext(),R.color.colorAccent))
+            textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
         }
+    }
 
-        return view
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -45,7 +45,7 @@ class ExercisesFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         // Inflate the layout for this fragment
         _binding = FragmentExercisesBinding.inflate(inflater, container, false)
@@ -60,7 +60,7 @@ class ExercisesFragment : Fragment(), SearchView.OnQueryTextListener {
             exercisesViewModel.backOnline = it
         })
 
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted {
             networkListener = NetworkListener()
             networkListener.checkNetworkAvailability(requireContext())
                 .collect { status ->
@@ -72,10 +72,9 @@ class ExercisesFragment : Fragment(), SearchView.OnQueryTextListener {
         }
 
         binding.exercisesFab.setOnClickListener {
-            if(exercisesViewModel.networkStatus){
+            if (exercisesViewModel.networkStatus) {
                 findNavController().navigate(R.id.action_exercisesFragment_to_exercisesBottomSheet)
-            }
-            else {
+            } else {
                 exercisesViewModel.showNetworkStatus()
             }
         }
@@ -99,7 +98,7 @@ class ExercisesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if(query != null){
+        if (query != null) {
             searchApiData(query)
         }
         return true
@@ -130,6 +129,7 @@ class ExercisesFragment : Fragment(), SearchView.OnQueryTextListener {
             when (response) {
                 is NetworkResult.Success -> {
                     response.data?.let { mAdapter.setData(it) }
+                    exercisesViewModel.saveBodyPartAndTarget()
                     hideShimmerEffect()
                 }
                 is NetworkResult.Error -> {
@@ -148,15 +148,15 @@ class ExercisesFragment : Fragment(), SearchView.OnQueryTextListener {
         })
     }
 
-    private fun searchApiData(searchQuery: String){
+    private fun searchApiData(searchQuery: String) {
         showShimmerEffect()
         mainViewModel.searchExercises(exercisesViewModel.applySearchQuery(searchQuery))
         mainViewModel.searchedExercisesResponse.observe(viewLifecycleOwner, { response ->
-            when(response){
+            when (response) {
                 is NetworkResult.Success -> {
                     hideShimmerEffect()
                     val exercise = response.data
-                    exercise?.let {mAdapter.setData(it)}
+                    exercise?.let { mAdapter.setData(it) }
                 }
                 is NetworkResult.Error -> {
                     hideShimmerEffect()
@@ -185,19 +185,18 @@ class ExercisesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun showShimmerEffect() {
-        binding.recyclerview.visibility = View.INVISIBLE
-        binding.shimmerViewContainer.visibility = View.VISIBLE
-        binding.shimmerViewContainer.showShimmer(true)
+        binding.recyclerview.visibility = View.GONE
+        binding.shimmerViewContainer.startShimmer()
     }
 
     private fun hideShimmerEffect() {
-        binding.shimmerViewContainer.hideShimmer()
+        binding.shimmerViewContainer.stopShimmer()
         binding.shimmerViewContainer.visibility = View.GONE
         binding.recyclerview.visibility = View.VISIBLE
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }

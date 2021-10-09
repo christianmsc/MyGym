@@ -14,7 +14,6 @@ import com.github.christianmsc.com.github.christianmsc.util.NetworkResult
 import com.github.christianmsc.com.github.christianmsc.viewmodels.MainViewModel
 import com.github.christianmsc.databinding.FragmentRandomExerciseBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_overview.view.*
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -30,7 +29,7 @@ class RandomExerciseFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRandomExerciseBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.mainViewModel = mainViewModel

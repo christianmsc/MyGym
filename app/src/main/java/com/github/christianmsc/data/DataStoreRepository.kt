@@ -14,6 +14,7 @@ import com.github.christianmsc.com.github.christianmsc.util.Constants.Companion.
 import com.github.christianmsc.com.github.christianmsc.util.Constants.Companion.PREFERENCES_TARGET_ID
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ActivityRetainedScoped
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
@@ -22,7 +23,7 @@ import javax.inject.Inject
 
 private val Context.dataStore by preferencesDataStore(name = PREFERENCES_NAME)
 
-@ActivityRetainedScoped
+@ViewModelScoped
 class DataStoreRepository @Inject constructor(@ApplicationContext private val context: Context) {
 
     private object PreferenceKeys {
